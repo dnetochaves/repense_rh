@@ -2,14 +2,25 @@
 
 
 {% block title %}
-Core
+    Core | {{ block.super }}
 {% endblock title %}
+    
 
 
 {% block main %}
 <div class="starter-template text-center py-5 px-3">
-    <h1>Bootstrap starter template</h1>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text
-        and a mostly barebones HTML document.</p>
+    <h1>
+
+        {% if employee.employee.company %}
+        Olá {{ employee.employee.name }}
+
+        <p class="lead">Você está vinculada a emrpesa <strong>{{employee.employee.company}} seja bem vinda</strong></p>
+        {% else %}
+        <a href="{% url 'company:company_create' %}">Editar empresa</a>
+
+        {% endif %}
+
+    </h1>
+
 </div>
 {% endblock main %}

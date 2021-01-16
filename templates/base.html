@@ -2,12 +2,21 @@
 <!doctype html>
 <html lang="en">
 
-{% include 'partials/_head.html' %}
+<head>
+    {% include 'partials/_head.html' %}
+    <title>
+
+        {% block title %}
+            Repense_RH
+        {% endblock title %}
+
+    </title>
+</head>
 
 <body>
 
 
-    
+
     {% include 'partials/_nav.html' %}
     <main class="container">
 
