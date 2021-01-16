@@ -1,5 +1,4 @@
 """repense_rh URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
@@ -15,9 +14,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#from django.contrib.auth.views import LoginView, LogoutView
+
+
 
 urlpatterns = [
     path('', include('apps.core.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    #path('login/', LoginView.as_view(), name="login"),
     path('employee/', include('apps.employee.urls')),
     path('admin/', admin.site.urls),
 ]
