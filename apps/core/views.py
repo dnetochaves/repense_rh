@@ -6,3 +6,5 @@ def index(request):
     employee = request.user
     return render(request, 'core/index.html', {'employee': employee})
 
+def perfil(request):
+    return render(request, 'core/perfil.html')

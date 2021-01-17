@@ -1,6 +1,9 @@
 from django.urls import path, include
 from . import views
 
+app_name = "core"
+
 urlpatterns = [
-    path('',  views.index, name='index')
+    path('',  views.index, name='index'),
+    path('perfil/',  views.perfil, name='perfil'),
 ]

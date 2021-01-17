@@ -1,10 +1,15 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Company
 from django.http import HttpResponse
 
+
 def index(request):
     return HttpResponse('Index')
+
+
+def company(request):
+    return render(request, 'company/company.html')
 
 
 class CompanyCreate(CreateView):
@@ -17,3 +22,8 @@ class CompanyCreate(CreateView):
         employee.company = obj
         employee.save()
         return HttpResponse('Ok')
+
+
+class CompanyUpdate(UpdateView):
+    model = Company
+    fields = ['name']
