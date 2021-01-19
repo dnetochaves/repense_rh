@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
 from .models import Company
+from apps.employee.models import Employee
 from django.http import HttpResponse
 
 
@@ -9,7 +10,8 @@ def index(request):
 
 
 def company(request):
-    return render(request, 'company/company.html')
+    companys = Employee.objects.filter(pk=request.user.id)
+    return render(request, 'company/company.html', {'companys': companys})
 
 
 class CompanyCreate(CreateView):
