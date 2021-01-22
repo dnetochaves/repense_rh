@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+from django.contrib.messages import constants
 from pathlib import Path
 import os
 
@@ -129,3 +129,11 @@ STATICFILES_DIRS = [BASE_DIR, "static"]
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+MESSAGE_TAGS = {
+    constants.DEBUG: 'alert-info',
+    constants.ERROR: 'alert-danger',
+    constants.INFO: 'alert-info',
+    constants.SUCCESS: 'alert-success',
+    constants.WARNING: 'alert-warning',
+}

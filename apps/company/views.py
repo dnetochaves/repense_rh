@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from .models import Company
 from apps.employee.models import Employee
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def index(request):
@@ -26,6 +28,11 @@ class CompanyCreate(CreateView):
         return HttpResponse('Ok')
 
 
-class CompanyUpdate(UpdateView):
+class CompanyUpdate(SuccessMessageMixin, UpdateView):
     model = Company
     fields = ['name']
+    success_message = "Dados atualizados com sucesso!!"
+    
+    
+
+   
