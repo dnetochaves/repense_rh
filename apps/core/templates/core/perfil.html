@@ -8,63 +8,86 @@ Perfil | {{ block.super }}
 
 
 {% block main %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <h1 class="text-center bg-secondary">Painel</h1>
+        <div class="col-sm">
+            <div class="card text-center">
+                <div class="card-header">
+                    Perfil
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Gerenciar Perfil</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
         </div>
-        <hr>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm">
-        <center>
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/9.jpeg' %}" width="100px" height="100px" class="card-img-top" alt="...">
+        <div class="col-sm">
+            <div class="card text-center">
+                <div class="card-header">
+                    Empresa
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Perfil</h5>
-                    <p class="card-text">Perfil Usuário</p>
-                    <a href="" class="btn btn-primary">Acessar</a>
+                    <h5 class="card-title">Gerenciar Empresa</h5>
+                    <p class="card-text"></p>
+                    <a href="{% url 'company:company' %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
                 </div>
             </div>
-        </center>
-    </div>
-    <div class="col-sm">
-        <center>
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/5.jpeg' %}" width="100px" height="100px" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Empresa</h5>
-                    <p class="card-text">Gerenciar Empresa</p>
-                    <a href="{% url 'company:company' %}" class="btn btn-primary">Acessar</a>
+        </div>
+        <div class="col-sm">
+            <div class="card text-center">
+                <div class="card-header">
+                    Funcionários
                 </div>
-            </div>
-        </center>
-    </div>
-    <div class="col-sm">
-        <center>
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/2.jpeg' %}" width="100px" height="100px" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Funcionários</h5>
-                    <p class="card-text">Gerenciar Funcionários</p>
-                    <a href="{% url 'employee:list_employee' %}" class="btn btn-primary">Acessar</a>
+                    <p class="card-text"></p>
+                    <a href="{% url 'employee:list_employee' %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
                 </div>
             </div>
-        </center>
+        </div>
     </div>
-    <div class="col-sm">
-        <center>
-            <div class="card" style="width: 18rem;">
-                <img src="{% static 'img/7.jpeg' %}" width="100px" height="100px" class="card-img-top" alt="...">
+    <hr>
+    <div class="row">
+        <div class="col-sm">
+            <div class="card text-center">
+                <div class="card-header">
+                    Departamento
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">Departamento</h5>
-                    <p class="card-text">Gerenciar Departamentos</p>
-                    <a href="{% url 'departament:list_departament' %}" class="btn btn-primary">Acessar</a>
+                    <p class="card-text"></p>
+                    <a href="{% url 'departament:list_departament' %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
                 </div>
             </div>
-        </center>
+        </div>
+        <div class="col-sm">
+            <div class="card text-center">
+                <div class="card-header">
+                    Documentos
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Documentos</h5>
+                    <p class="card-text"></p>
+                    <a href="{% url 'documents:document-list' %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </div>
 {% endblock main %}

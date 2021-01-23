@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% load bootstrap %}
+{% load widget_tweaks %}
 
 {% block title %}
-Company
+Employee
 {% endblock title %}
 
 
@@ -11,11 +11,11 @@ Company
 <form method="post">
     {% csrf_token %}
     <div class="mb-3">
-        {{ form|bootstrap }}
+        <label for="exampleFormControlInput1" class="form-label">Nome :</label>
+        {{form.name | add_class:"form-control"| attr:"autofocus"}}
     </div>
     <input type="submit" class="btn btn-primary" value="Save">
 </form>
+
+
 {% endblock main %}
-
-
-</form>

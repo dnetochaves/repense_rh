@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Departament
+{% endblock title %}
+
+
+{% block main %}
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock main %}
+
+
+</form>
