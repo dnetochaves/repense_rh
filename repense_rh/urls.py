@@ -25,5 +25,6 @@ urlpatterns = [
     path('company/', include('apps.company.urls')),
     path('departament/', include('apps.departament.urls')),
     path('documents/', include('apps.documents.urls')),
+    path('ouvertime-record/', include('apps.ouvertime_record.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

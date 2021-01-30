@@ -31,13 +31,14 @@ class EmployeeDelete(DeleteView):
     model = Employee
     success_url = reverse_lazy('employee:list_employee')
 
-class EmployeeCreate(CreateView):
-     model = Employee
-     fields = ['name', 'departament']
 
-     def form_valid(self, form):
-         obs = form.save(commit=False)
-         obs.company = self.request.user.employee.company
-         obs.user = User.objects.create(username=obs.name)
-         obs.save()
-         return super(EmployeeCreate, self).form_valid(form)
+class EmployeeCreate(CreateView):
+    model = Employee
+    fields = ['name', 'departament']
+
+    def form_valid(self, form):
+        obs = form.save(commit=False)
+        obs.company = self.request.user.employee.company
+        obs.user = User.objects.create(username=obs.name)
+        obs.save()
+        return super(EmployeeCreate, self).form_valid(form)
