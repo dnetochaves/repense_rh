@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block title %}
 Employee
@@ -7,11 +8,68 @@ Employee
 
 {% block main %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm border border-dark">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nome :</label>
+                    {{form.name | add_class:"form-control"| attr:"autofocus"}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Departamento :</label>
+                    {{form.departament | add_class:"form-control"}}
+                </div>
+                <input type="submit" class="btn btn-primary" value="Save">
+            </form>
+        </div>
+        <div class="col-sm border border-dark" style="height: 300px; overflow: auto;">
+            <div class="table-responsive">
+
+                {% for doc in object.documents_set.all %}
+                <table class="table">
+                    <thead class="bg-secondary">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{ doc.id }}</th>
+                            <td><a href="{{ doc.doc.url }}">{{ doc.description }}</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                {% empty %}
+                <div class="alert alert-warning" role="alert">
+                    Funcionário sem documento registrado
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+        <div class="col-sm border border-dark">
+                {% for time in object.ouvertimerecord_set.all %}
+                <ul class="list-group">
+                    <li class="list-group-item">{{ time.reason }} | <a href="{% url 'ouvertime_record:ouver-time-update' time.id %}">{{ time.hours }}</a></li>
+                </ul>
+               
+                {% empty %}
+                <div class="alert alert-warning" role="alert">
+                    Funcionário sem documento registrado
+                </div>
+                {% endfor %}
+                <div>
+                    Total Horas Extras = <strong>{{ object.sum_overtime }}</strong>
+                </div>
+        </div>
+    </div>
+</div>
 {% endblock main %}
 
 

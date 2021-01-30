@@ -21,16 +21,18 @@
                     <a class="nav-link" aria-current="page" href="{% url 'employee:list_employee' %}">Funcionários</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'departament:list_departament' %}">Departamento</a>
+                    <a class="nav-link" aria-current="page"
+                        href="{% url 'departament:list_departament' %}">Departamento</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{% url 'documents:document-list' %}">Documentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'ouvertime_record:ouver-time' %}">Banco de horas</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'ouvertime_record:ouver-time' %}">Banco de
+                        horas</a>
                 </li>
                 {% endif %}
-              
+
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -51,7 +53,7 @@
                                 alt=""> Perfil</a></li>
                 </ul>
             </div>
-            <img src="{% static 'img/avatar1.png' %}" width="50px" height="50px" class="img-thumbnail" alt="...">
+            <img src="{{ user.employee.photo.url }}" width="50px" height="50px" class="img-thumbnail" alt="...">
             {% else %}
             <div class="dropdown">
                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
