@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'apps.documents',
     'apps.ouvertime_record',
     'apps.core',
-    'bootstrapform',
     'widget_tweaks',
 ]
 
