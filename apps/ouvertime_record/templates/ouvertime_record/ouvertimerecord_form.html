@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Employee
@@ -10,15 +11,30 @@ Employee
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Updataae">
+    <input class="btn btn-primary" type="submit" value="Update">
 
     {% if object %}
     <a href="{% url 'ouvertime_record:ouver-time-delete' object.id %}" class="btn btn-danger">Delete</a>
+    <button type="button" class="btn btn-primary" onclick="utilizouHoraExtra({{ object.id }})">Marcar como
+        utilizado</button>
+    <p id="mensagem">sss</p>
+    <p id="hours">{{ object.employee.sum_overtime }}</p>
     {% endif %}
 
 
 </form>
+
+
+
 {% endblock main %}
+
+
+{% block jquery %}
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/funcoes-ajax.js' %}"></script>
+
+{% endblock jquery %}
+
 
 
 </form>

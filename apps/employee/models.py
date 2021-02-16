@@ -16,9 +16,9 @@ class Employee(models.Model):
 
     @property
     def sum_overtime(self):
-        total = self.ouvertimerecord_set.all().aggregate(Sum('hours'))[
+        total = self.ouvertimerecord_set.filter(used=False).aggregate(Sum('hours'))[
             'hours__sum']
-        return total
+        return total or 0
 
     def get_absolute_url(self):
         return reverse('employee:list_employee')
