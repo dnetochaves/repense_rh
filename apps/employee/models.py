@@ -19,7 +19,7 @@ class Employee(models.Model):
         total = self.ouvertimerecord_set.filter(used=False).aggregate(Sum('hours'))[
             'hours__sum']
         return total or 0
-
+ 
     def get_absolute_url(self):
         return reverse('employee:list_employee')
 

@@ -58,7 +58,18 @@ class UtilizouHoraExtra(View):
         used.save()
 
         employee = self.request.user.employee
-        print(f'################################{employee.sum_overtime}')
         response = json.dumps(
             {'mensagem': 'Requisição execultadass', 'hours': float(employee.sum_overtime) })
+        return HttpResponse(response, content_type='application/json')
+
+class CheckedFalse(View):
+    def post(self, *args, **kwargs):
+
+        used = OuverTimeRecord.objects.get(id=kwargs['pk'])
+        used.used = False
+        used.save()
+
+        employee = self.request.user.employee
+        response = json.dumps(
+            {'mensagem': 'Checked False', 'hours': float(employee.sum_overtime) })
         return HttpResponse(response, content_type='application/json')

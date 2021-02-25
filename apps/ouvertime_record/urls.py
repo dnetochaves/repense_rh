@@ -15,4 +15,6 @@ urlpatterns = [
          name='ouver-time-create'),
     path('utilizou-hora-extra/<int:pk>/', views.UtilizouHoraExtra.as_view(),
          name='utilizou-hora-extra'),
+    path('checked-false/<int:pk>/', views.CheckedFalse.as_view(),
+         name='checked-false'),
 ]

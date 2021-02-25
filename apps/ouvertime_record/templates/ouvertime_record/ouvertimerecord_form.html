@@ -17,7 +17,8 @@ Employee
     <a href="{% url 'ouvertime_record:ouver-time-delete' object.id %}" class="btn btn-danger">Delete</a>
     <button type="button" class="btn btn-primary" onclick="utilizouHoraExtra({{ object.id }})">Marcar como
         utilizado</button>
-    <p id="mensagem">sssf</p>
+    <button type="button" class="btn btn-warning" onclick="checkedFalse({{ object.id }})">Checked False</button>
+    <p id="mensagem"></p>
     <p id="hours">{{ object.employee.sum_overtime }}</p>
     {% endif %}
 
