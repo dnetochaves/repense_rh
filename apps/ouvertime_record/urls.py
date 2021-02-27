@@ -19,4 +19,10 @@ urlpatterns = [
          name='checked-false'),
     path('report-lab/', views.some_view,
          name='report-lab'),
+    path('xhtml2/', views.render_pdf_view,
+         name='xhtml2'),
+    path('export-csv/', views.ExportCsv.as_view(),
+         name='export-csv'),
+    path('export-excel/', views.ExportExcel.as_view(),
+         name='export-excel'),
 ]

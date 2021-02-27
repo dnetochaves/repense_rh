@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Employee
+Banco de Horas
 {% endblock title %}
 
 
@@ -9,12 +9,9 @@ Employee
 <ul class="nav bg-secondary">
     <li class="nav-item">
         <a class="nav-link active text-light" aria-current="page" href="{% url 'ouvertime_record:ouver-time-create' %}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                class="bi bi-app-indicator" viewBox="0 0 16 16">
-                <path
-                    d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z" />
-                <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
         </a>
     </li>
     <li class="nav-item">
@@ -23,8 +20,18 @@ Employee
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active text-light" aria-current="page" href="{% url 'ouvertime_record:report-lab' %}">
-           Download Pdf 
+        <a class="nav-link active text-light" aria-current="page" href="{% url 'ouvertime_record:xhtml2' %}">
+           Download Pdf Xhtml2
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active text-light" aria-current="page" href="{% url 'ouvertime_record:export-csv' %}">
+           Exportar CSV
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active text-light" aria-current="page" href="{% url 'ouvertime_record:export-excel' %}">
+           Exportar Excel Xlwt
         </a>
     </li>
 </ul>
