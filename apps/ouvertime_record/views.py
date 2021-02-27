@@ -7,6 +7,11 @@ from django.urls import reverse_lazy
 from django.views import View
 import json
 
+# Import for reportlab
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+
 
 def index(request):
     return HttpResponse('ok')
@@ -59,8 +64,9 @@ class UtilizouHoraExtra(View):
 
         employee = self.request.user.employee
         response = json.dumps(
-            {'mensagem': 'Requisição execultadass', 'hours': float(employee.sum_overtime) })
+            {'mensagem': 'Requisição execultadass', 'hours': float(employee.sum_overtime)})
         return HttpResponse(response, content_type='application/json')
+
 
 class CheckedFalse(View):
     def post(self, *args, **kwargs):
@@ -71,5 +77,37 @@ class CheckedFalse(View):
 
         employee = self.request.user.employee
         response = json.dumps(
-            {'mensagem': 'Checked False', 'hours': float(employee.sum_overtime) })
+            {'mensagem': 'Checked False', 'hours': float(employee.sum_overtime)})
         return HttpResponse(response, content_type='application/json')
+
+
+# ReportLab
+def some_view(request):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    p.drawString(200, 810, 'Relatorio de Horas ReportLab')
+
+    
+
+    times = OuverTimeRecord.objects.filter(employee=request.user.employee.company.id)
+
+    y = 790
+    for time in times:
+        p.drawString(10, y, time.reason)
+        p.drawString(100, y, time.employee.name)
+        p.drawString(200, y, str(time.hours))
+        p.drawString(300, y, str(time.used))
+        y -= 40
+
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response

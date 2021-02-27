@@ -17,4 +17,6 @@ urlpatterns = [
          name='utilizou-hora-extra'),
     path('checked-false/<int:pk>/', views.CheckedFalse.as_view(),
          name='checked-false'),
+    path('report-lab/', views.some_view,
+         name='report-lab'),
 ]
