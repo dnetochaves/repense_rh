@@ -8,7 +8,68 @@ Employee
 
 {% block main %}
 
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="{% url 'documents:document-create' %}">Novo Documento</a></li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <p class="lead">
+        Total : <strong>{{ object.sum_overtime }}</strong>
+    </p>
+    <hr>
+    <div class="row">
+        {% for time in object.ouvertimerecord_set.all %}
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">{{ time.reason }} | {{ time.hours }}</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link"
+                        href="{% url 'ouvertime_record:ouver-time-update' time.id %}">Detalhes</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nome:</label>
+                    {{form.name | add_class:"form-control"| attr:"autofocus"}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Departamento:</label>
+                    {{form.departament | add_class:"form-control"}}
+                </div>
+                <input type="submit" class="btn btn-primary" value="Save">
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in object.documents_set.all %}
+            <tr>
+                <th scope="row">{{ doc.description }}</th>
+                <td>
+                    <div class="text-center">
+                        <img src="{{ doc.doc.url }}" width="40px" height="40px" class="rounded-circle" alt="..."> </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+<!--
 <div class="container">
     <div class="row">
         <div class="col-sm border border-dark">
@@ -54,23 +115,27 @@ Employee
             </div>
         </div>
         <div class="col-sm border border-dark">
-                {% for time in object.ouvertimerecord_set.all %}
-                <ul class="list-group">
-                    <li class="list-group-item">{{ time.reason }} | <a href="{% url 'ouvertime_record:ouver-time-update' time.id %}">{{ time.hours }}</a></li>
-                </ul>
-               
-                {% empty %}
-                <div class="alert alert-warning" role="alert">
-                    Funcionário sem documento registrado
-                </div>
-                {% endfor %}
-                <div>
-                    Total Horas Extras = <strong>{{ object.sum_overtime }}</strong>
-                </div>
+            {% for time in object.ouvertimerecord_set.all %}
+            <ul class="list-group">
+                <li class="list-group-item">{{ time.reason }} | <a
+                        href="{% url 'ouvertime_record:ouver-time-update' time.id %}">{{ time.hours }}</a></li>
+            </ul>
+
+            {% empty %}
+            <div class="alert alert-warning" role="alert">
+                Funcionário sem documento registrado
+            </div>
+            {% endfor %}
+            <div>
+                Total Horas Extras = <strong>{{ object.sum_overtime }}</strong>
+            </div>
         </div>
     </div>
 </div>
-{% endblock main %}
+
 
 
 </form>
+-->
+
+{% endblock main %}

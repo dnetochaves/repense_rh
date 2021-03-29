@@ -26,7 +26,7 @@ class EmployeeUpdate(UpdateView):
     model = Employee
     fields = ['name', 'departament']
 
-
+# TODO : Implementar try catch no retorno com erro exibir uma mensagem
 class EmployeeDelete(DeleteView):
     model = Employee
     success_url = reverse_lazy('employee:list_employee')

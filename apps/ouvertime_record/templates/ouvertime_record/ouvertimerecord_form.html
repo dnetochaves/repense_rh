@@ -7,23 +7,50 @@ Employee
 
 
 {% block main %}
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <p id="mensagem"></p>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small text-white stretched-link" href="#">
+                            Total <p id="hours">{{ object.employee.sum_overtime }}</p>
+                        </a>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input class="btn btn-primary" type="submit" value="Update">
+                            {% if object %}
+                            <a href="{% url 'ouvertime_record:ouver-time-delete' object.id %}"
+                                class="btn btn-danger">Delete</a>
+                            <button type="button" class="btn btn-primary"
+                                onclick="utilizouHoraExtra({{ object.id }})">Utilizado</button>
+                            <button type="button" class="btn btn-warning" onclick="checkedFalse({{ object.id }})">Não
+                                Utilizada</button>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input class="btn btn-primary" type="submit" value="Update">
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    {% if object %}
-    <a href="{% url 'ouvertime_record:ouver-time-delete' object.id %}" class="btn btn-danger">Delete</a>
-    <button type="button" class="btn btn-primary" onclick="utilizouHoraExtra({{ object.id }})">Marcar como
-        utilizado</button>
-    <button type="button" class="btn btn-warning" onclick="checkedFalse({{ object.id }})">Checked False</button>
-    <p id="mensagem"></p>
-    <p id="hours">{{ object.employee.sum_overtime }}</p>
-    {% endif %}
-
-
-</form>
 
 
 

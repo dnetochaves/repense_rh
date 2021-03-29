@@ -41,11 +41,12 @@ class OuverTimeRecordUpdate(UpdateView):
     model = OuverTimeRecord
     fields = ['reason', 'hours']
 
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.employee = self.request.user.employee
-        obj.save()
-        return super(OuverTimeRecordUpdate, self).form_valid(form)
+    #Metodo desabilitado por mudança de regra
+    #def form_valid(self, form):
+    #    obj = form.save(commit=False)
+    #   obj.employee = self.request.user.employee
+    #   obj.save()
+    #   return super(OuverTimeRecordUpdate, self).form_valid(form)
 
 
 class OuverTimeRecordDelete(DeleteView):
@@ -73,7 +74,7 @@ class UtilizouHoraExtra(View):
 
         employee = self.request.user.employee
         response = json.dumps(
-            {'mensagem': 'Requisição execultadass', 'hours': float(employee.sum_overtime)})
+            {'mensagem': 'Utilizado', 'hours': float(employee.sum_overtime)})
         return HttpResponse(response, content_type='application/json')
 
 
@@ -86,7 +87,7 @@ class CheckedFalse(View):
 
         employee = self.request.user.employee
         response = json.dumps(
-            {'mensagem': 'Checked False', 'hours': float(employee.sum_overtime)})
+            {'mensagem': 'Não Utilizado', 'hours': float(employee.sum_overtime)})
         return HttpResponse(response, content_type='application/json')
 
 

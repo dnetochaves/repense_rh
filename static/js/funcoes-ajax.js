@@ -17,7 +17,6 @@ function checkedFalse(id) {
 }
 
 function utilizouHoraExtra(id) {
-    console.log(id);
     token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 
     $.ajax({

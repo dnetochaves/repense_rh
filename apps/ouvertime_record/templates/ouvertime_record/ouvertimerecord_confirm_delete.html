@@ -6,11 +6,26 @@ Employee
 
 
 {% block main %}
+<div class="container-fluid">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+   
+    <div class="card">
+        <div class="card-body bg-danger">
+            <form method="post">{% csrf_token %}
+                <p>Tem certeza que deseja excluir o registro "{{ object }}"?</p>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                    <a class="btn btn-danger" href="http://">Voltar</a>
+                  </div>
+            </form>
+        </div>
+    </div>
 
-<form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+</div>
+
 {% endblock main %}
 
 

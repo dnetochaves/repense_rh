@@ -12,9 +12,10 @@ def index(request):
 
 
 def company(request):
-    companys = Employee.objects.filter(pk=request.user.id)
-    return render(request, 'company/company.html', {'companys': companys})
-
+    user_employee = Employee.objects.get(pk=request.user.employee.id)
+    companys = Employee.objects.filter(company=user_employee.company_id)
+    return render(request, 'company/company.html', {'companys': companys, 'user_employee': user_employee})
+    
 
 class CompanyCreate(CreateView):
     model = Company
